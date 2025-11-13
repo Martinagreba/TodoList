@@ -77,4 +77,29 @@
 5. **Profile** — сторінка профілю користувача  
 6. **Модальне вікно** — для створення нової задачі
 
+## Скриншоти
 
+### Get Started сторінка
+![Get Started Page](assets/images/screenshots/GetStartedPage.jpg)
+
+### Порожня головна сторінка 
+![Empty Home Page](assets/images/screenshots/EmptyHomePage.jpg)
+
+### Головна сторінка з завданнями 
+![Home Page](assets/images/screenshots/HomePage.jpg)
+
+### Модальне вікно створення завдання
+![Add Task Modal](assets/images/screenshots/ModalAddTask.jpg)
+
+### Редагування завдання
+![Edit Task Page](assets/images/screenshots/EditTaskPage.jpg)
+
+### Редагування профілю
+![Edit Profile Page](assets/images/screenshots/EditProfile.jpg)
+
+### Сторінка профілю користувача
+![Profile Page](assets/images/screenshots/ProfilePage.jpg)
+
+## Демо-відео
+
+[Переглянути відео-демо] (https://drive.google.com/file/d/1rM_Ctox2poKgmRaVbsmEJlo8FVgJ5hX9/view?usp=sharing)
