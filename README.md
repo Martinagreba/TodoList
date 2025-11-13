@@ -1,50 +1,80 @@
-# Welcome to your Expo app 👋
+# Welcome to TodoList👋
+Мобільний додаток створений на **React Native (Expo)** з використанням **Firebase** та **Zustand**. 
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Основні можливості
 
-## Get started
-
-1. Install dependencies
+1. Авторизація та реєстрація
+2. Створення, редагування та видалення задач
+3. Пошук за назвою
+4. Фільтрація за категорією та за статусом
+5. Синхронізація в реальному часі з Firestore
+6. Модальне вікно для створення нових задач
+   
+##Запуск проекту
+1. Завантажити залежності
 
    ```bash
    npm install
    ```
 
-2. Start the app
+2. Запустити додаток 
 
    ```bash
    npx expo start
    ```
+  ## Налаштування Firebase
 
-In the output, you'll find options to open the app in a
+Для цього додатку використано **Firebase Authentication** та **Cloud Firestore**:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- **Firebase Authentication** — для реєстрації та входу користувачів  
+- **Cloud Firestore** — для зберігання задач у колекції `tasks`
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### Підключення Firebase
 
-## Get a fresh project
+1. Створила новий проєкт у Firebase Console та додала Web App  
+2. Створила файл `firebaseConfig.ts` у корені проєкту  
+3. Скопійовала конфігураційний об’єкт Firebase  
 
-When you're ready, run:
+`firebaseConfig.ts` містить такі параметри:
 
-```bash
-npm run reset-project
-```
+- `apiKey` — ключ додатку для доступу до Firebase  
+- `authDomain` — домен для авторизації користувачів  
+- `projectId` — ідентифікатор Firebase-проєкту  
+- `storageBucket` — сховище для файлів  
+- `messagingSenderId` — ідентифікатор для повідомлень  
+- `appId` — унікальний ідентифікатор Firebase App  
+- `measurementId` — для аналітики Firebase
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Архітектура додатку
 
-## Learn more
+Додаток побудований на **React Native + Expo** із використанням **Firebase** для бекенду.
 
-To learn more about developing your project with Expo, look at the following resources:
+### State Management
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Для керування станом задач використовується **Zustand**:
 
-## Join the community
+- Усі задачі зберігаються в `taskStore`  
+- Реалізовано базовий **CRUD** функціонал:
+  - **Create** — додавання нових задач  
+  - **Read** — отримання списку задач  
+  - **Update** — оновлення існуючих задач  
+  - **Delete** — видалення задач  
+- Всі операції синхронізуються з Firestore і зберігаються в глобальному стані
 
-Join our community of developers creating universal apps.
+### Валідація форм
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Для реєстрації, входу та створення задач використовується **React Hook Form**.  
+Валідація здійснюється через **Zod** — визначені схеми (`TaskSchema`, `LoginSchema`, `SignUpSchema`) перевіряють коректність введених даних перед надсиланням.
+
+## Навігація
+
+У застосунку використовується **Expo Router** для організації переходів між сторінками:
+
+1. **Start Page (`index.tsx`)** — стартова сторінка застосунку  
+2. **Login та SignUp** — сторінки авторизації та реєстрації користувача  
+3. **Home** — головна сторінка з переліком задач  
+4. **EditPage** — сторінка редагування конкретної задачі, відкривається при натисканні на задачу 
+5. **Profile** — сторінка профілю користувача  
+6. **Модальне вікно** — для створення нової задачі
+
+
